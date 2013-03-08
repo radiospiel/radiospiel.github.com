@@ -1,0 +1,14 @@
+---
+layout: post
+title: Installing Ubuntu on a Thinkpad x121e
+published: true
+date: 2012-11-05
+categories: []
+posterous_url: http://radiospiel.org/installing-ubuntu-on-a-thinkpad-x121e
+posterous_slug: installing-ubuntu-on-a-thinkpad-x121e
+---
+<p>This one took me a while. I tried to install Ubuntu 12.10 alongside an existing Windows 7 installation on a x121e from an USB stick. And while the installation itself went smoothless, the boot configuration was not written properly.</p>
+
+<p>The reason? Something prevented the master boot record to be written. Hence no grub and no way to choose the Linux OS to be booted. The solution: <strong>disable UEFI boot mode in the thinkpad&rsquo;s BIOS</strong>! The default setting tries to be smart: try booting in UEFI mode, and if that fails boot in legacy mode. But this didn&rsquo;t work, even though the disk itself is in legacy mode.</p>
+
+<p>So save some time, disable UEFI boot mode, and you are good to go.</p>

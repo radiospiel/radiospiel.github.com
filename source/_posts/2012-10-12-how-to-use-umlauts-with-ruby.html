@@ -1,0 +1,49 @@
+---
+layout: post
+title: ! 'How to use Umlauts with ruby?  '
+published: true
+date: 2012-10-12
+categories: []
+posterous_url: http://radiospiel.org/how-to-use-umlauts-with-ruby
+posterous_slug: how-to-use-umlauts-with-ruby
+---
+<p>First of all: Ruby 1.8 does not deal well with umlauts and other non-ASCII characters. But now we have (at least) 1.9, which comes with proper support for <a href="http://en.wikipedia.org/wiki/Character_encoding">encodings.</a></p>
+
+<p>If both data and source are encoded in UTF-8 (or in the same encoding, to be more precise), then the naive approach works pretty well:</p>
+
+<div class="CodeRay">
+  <div class="code"><pre>str = &quot;künstlerhaus&quot;
+str.delete(&quot;ü&quot;)
+=&gt; knstlerhaus</pre></div>
+</div>
+
+
+<p>This is the case if you are trying this code in irb.</p>
+
+<p>If not, the String class implements a <code>String#encode</code> method, which converts a String into a different encoding, if needed. This is probably the best and canonical way to deal with umlaut issues:</p>
+
+<div class="CodeRay">
+  <div class="code"><pre>str.encode &quot;UTF-8&quot;</pre></div>
+</div>
+
+
+<p>This code raises an exception if</p>
+
+<ul>
+<li>there are some characters in <code>str</code> that cannot be encoded in the target encoding &ndash; which is not possible if the target encoding is an UTF encoding, because this by definition contains <strong>all</strong> characters, even Klingon :)</li>
+<li>or if there is some data in <code>str</code> that cannot be detected as an character. This means that the input string is not a string at all, just a bunch of binary data, and how would you convert that?</li>
+</ul>
+
+
+<p>Now how to get the umlatu character into your source file? The best option is to save the file in UTF-8 &ndash; most editors these days do that just fine &ndash; and  you tell the ruby interpreter that the source code is, in fact, UTF-8. This is done by a comment line on top of the file like this:</p>
+
+<div class="CodeRay">
+  <div class="code"><pre># encoding: utf-8</pre></div>
+</div>
+
+
+<p>Alternatively &ndash; and probably safer, because it works in all editors, but less readable, is to put the character hexencoded into the source code. For this you look up the UTF-16 codepoint on the internet (in fact, it is not an UTF-16 codepoint, but the codepoint in UTF-16 encoding.) For the &ldquo;ü&rdquo; character this is &ldquo;00FC&rdquo;. Then you write it down like this:</p>
+
+<div class="CodeRay">
+  <div class="code"><pre>str.delete(&quot;\u00fc&quot;)</pre></div>
+</div>

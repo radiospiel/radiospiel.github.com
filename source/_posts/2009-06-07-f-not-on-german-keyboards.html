@@ -1,0 +1,21 @@
+---
+layout: post
+title: F# - not on german keyboards
+published: true
+date: 2009-06-07
+categories: []
+posterous_url: http://radiospiel.org/f-not-on-german-keyboards
+posterous_slug: f-not-on-german-keyboards
+---
+<p>Whoever designed <a href="http://en.wikipedia.org/wiki/F_Sharp_(programming_language)">F#</a> did certainly not have a german programmer in mind. Or how would you explain this</p>
+
+<div class="CodeRay">
+  <div class="code"><pre>(* Print even fibs *)
+[1 .. 10]
+|&gt; List.map     fib
+|&gt; List.filter  (fun n -&gt; (n mod 2) = 0)
+|&gt; printlist</pre></div>
+</div>
+
+
+<p>The pipe on a German Mac keyboard is &lt;Alt&gt; + &lt;7&gt;, which in itself ok; but directly followed by a '&gt;' - which is &lt;ShiftAlt&gt; + &lt;the key right next to shift&gt; is absolute nightmare for anyone with delicate bones in the left wrist. <a href="http://en.wikipedia.org/wiki/Repetitive_stress_syndrome">RSS</a>: you nearly got me, but then I still prefer other functional languages.</p>

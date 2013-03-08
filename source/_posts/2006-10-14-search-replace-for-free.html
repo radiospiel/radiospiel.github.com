@@ -1,0 +1,14 @@
+---
+layout: post
+title: Search & Replace for free
+published: true
+date: 2006-10-14
+categories: []
+posterous_url: http://radiospiel.org/search-replace-for-free
+posterous_slug: search-replace-for-free
+---
+<p>Warum 25$ zahlen f&uuml;r irgendwas, was es schon immer umsonst gibt? Hier ist es: <a href="http://www.funduc.com/search_replace.htm">Search &amp; Replace</a> for free: no fancy schmency UI, just the real stuff (given you got the needed tools installed: for Windows <a href="http://www.cygwin.com/">here</a>, Unixer und Mac OS X'ler kriegen das alles eh frei Haus)</p>
+
+<div class="code">
+bash-2.05b$ for DIR in $(find . -type d | grep -v CVS) ; do for F in $(fgrep -l ustring $DIR/*); do cat $F | sed 's|ustring|string|g' &gt; $F.tmp ; mv $F.tmp $F; done ; done
+</div>

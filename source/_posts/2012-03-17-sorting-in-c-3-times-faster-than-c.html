@@ -1,0 +1,36 @@
+---
+layout: post
+title: ! 'sorting in C++: 3 times faster than C.'
+published: true
+date: 2012-03-17
+categories:
+- ! 'C++ '
+- performance
+posterous_url: http://radiospiel.org/sorting-in-c-3-times-faster-than-c
+posterous_slug: sorting-in-c-3-times-faster-than-c
+---
+<p><em>(Follow the discussion on <a href="http://news.ycombinator.com/item?id=3716882" title="hackernews">hackernews</a>, assuming there will be one :)</em></p>
+<p>If you don't know C++ well, you might be surprised how fast C++ can be sometimes. This is especially true when code involved is small, because then inlining - which is what C++ is very good at - and templating, which makes excessive inlining possible in the first place - has the most effect.</p>
+<p>The following code compares C and C++ sorting:&nbsp;<script src="https://gist.github.com/2057852.js"></script></p>
+<p><a href="https://gist.github.com/2057852"></a>And here are some actual numbers, taken on a Macbook Air (gcc -DCOUNT=100000 -O3 -Wall sort.cpp -lstdc++):</p>
+<p>&nbsp;</p>
+<div class="CodeRay">
+  <div class="code"><pre>count        c++         c    c/c++ ratio
+    30000       1769      4949    2.80
+   100000       6604     17665    2.67
+   300000      22721     59713    2.63
+  1000000      79107    231982    2.93
+  3000000     266550    711608    2.67
+ 10000000     920159   2530939    2.75
+ 30000000    2909369   8259053    2.84
+100000000   10016849  28173682    2.81</pre></div>
+</div>
+
+<p>So, C++ is up to 3 times faster than C. How is this possible?</p>
+<p>Well: By inlining C++ is able to run just the raw algorithm. On the opposite the C code has a number of indirections: a) the comparison &nbsp;function will be called indirectly, via a pointer, and b) the values to compare are passed through to the&nbsp;comparison function can be accessed only via pointers. This - as measured - costs some overhead.&nbsp;</p>
+<p>Funny that the C code does explicitely, what many people wrongly assume C++ would be doing, namely calling a function via a pointer.&nbsp;</p>
+<p>My experience, when going for top level performance:</p>
+<p>- limit branching</p>
+<p>- optimize for the second level memory cache</p>
+<p>- consider C++ templating</p>
+<p>&nbsp;</p>

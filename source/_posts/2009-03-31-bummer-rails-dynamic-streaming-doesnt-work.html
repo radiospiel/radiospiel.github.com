@@ -1,0 +1,24 @@
+---
+layout: post
+title: Bummer! Rails dynamic streaming doesn't work
+published: true
+date: 2009-03-31
+categories:
+- Bummer
+- rails
+- streaming
+posterous_url: http://radiospiel.org/bummer-rails-dynamic-streaming-doesnt-work
+posterous_slug: bummer-rails-dynamic-streaming-doesnt-work
+---
+<p>Rails dynamic streaming doesn't work. At least sometimes. While the Rails documentation, and all the euphoric comments in the community feature code examples along the lines of</p>
+
+<div class="CodeRay">
+  <div class="code"><pre># Renders &quot;Hello from code!&quot;
+render :text =&gt; proc { |response, output| 
+  output.write(&quot;Hello from code!&quot;) }</pre></div>
+</div>
+
+
+<p>But this just doesn't work as not-really-advertised. The reason? While rails correctly - that is to say in the way it is documented - does write directly to the output stream, at least with Mongrel the output stream is just a String.</p>
+
+<p>So whatever you are doing: the entire request is still collected in RAM. Bummer!</p>

@@ -1,0 +1,26 @@
+---
+layout: post
+title: ! 'Posterous: worst support ever'
+published: true
+date: 2012-01-21
+categories:
+- posterous
+- radiospiel.org
+- web 2.0
+posterous_url: http://radiospiel.org/posterous-worst-support-ever
+posterous_slug: posterous-worst-support-ever
+---
+<h1>0x42 - Posterous: worst support ever</h1>
+<p>update: see this post: <a href="http://radiospiel.posterous.com/back-to-blogging-radiospiel-now-on-posterous">http://radiospiel.posterous.com/back-to-blogging-radiospiel-now-on-posterous</a></p>
+<p><em>Got a question? Email us at developers@posterous.com and we'll get back to you as quickly as we can.</em></p>
+<p>I admit: after more than 5 years of running my own software on this site I am ready to give up. While committing blog posts via git is cool if you are on a terminal, it is next to worthless if you are on the move. Blogging pictures is too complicated to ever be done, comments are not in my codebase - I added Disqus for sure, but I would like to deal with one technology provider only. And then hosting: running radiospiel.org on heroku works as frictionless as one could dream of, but it is still me who has to fix bugs and to upgrade the application on heroku's servers.</p>
+<h2>Posterous</h2>
+<p>Enter Posterous: <a href="http://posterous.com">Posterous</a> has some really really nifty features: You can blog by email, you can blog via a browser, you can post pics, you are free to modify your CSS, you can post code and have syntax highlighting... this could be the future home of radiospiel.org. Yay!</p>
+<p>However: how do I move my blog over there? Given comments on this blog got lost in cyberspace already, I only have to move the blog posts itself. Posterous would give you an API to do just that (amongst a number of other things.) And here is their <a href="http://posterous.com/api">"documentation"</a>. Which is for some fun fact hunting on a rainy afternoon: just tell me how the client authenticates itself. (On a side note: yes, we have to deal with increasingly crappy documentation in many places, like <a href="http://developer.appcelerator.com/apidoc/mobile/">this</a> or even <a href="http://developer.apple.com/library/mac/navigation/">this</a>.)</p>
+<p>But there is even an official ruby gem (gem install <a href="https://github.com/posterous/posterous-gem">posterous</a>), and this will probably deal with all of that. Some 30mins of coding, and I have a script which happily takes my posts and puts them into a posterous blog. But wait: this one post stops in the middle of text? Why is that?</p>
+<h2>All goes well, but..</h2>
+<p>Turns out, that posterous' API stops reading post title and body after the first '&amp;'. And yes, given that there is apparently (lack of documentation, remember?) no "content/type" kind of input parameter I did try both '&amp;' and '&amp;amp;' - same result. So what do you do in circumstances like this? Go ask for help. And who do you ask? The posterous guys, certainly.</p>
+<p>Turns out there is email support at <a href="mailto:help@posterous.com">help@posterous.com</a> and <a href="mailto:developers@posterous.com"><a href="mailto:developer@posterous.com">developer@posterous.com</a></a>. And while the first one reaches actual humans (albeit none with technical expertise to help out developers) the latter is just a bot which kind of "authenticates" you are a human and then just pours your email onto a posterous space <a href="http://developers.posterous.com">developers.posterous.com</a>. Not only is publishing your email probably from what you would expect from a support email address, you wouldn't receive any answer (or at least I didn't for ~5 days). Given that what I asked them about is a grave bug in their API, all the trust that I had into posterous is, well, gone.</p>
+<h2>So:</h2>
+<p>No posterous for me. Still no clue where to head with my blog. And my recommendation to not use their API ever. Because if you do, you might be left standing in the rain.</p>
+<p>PS: If you found out how the client authenticates itself, then may be you could tell me, why the posterous gem wants both username and password <strong>and</strong> an API key?</p>

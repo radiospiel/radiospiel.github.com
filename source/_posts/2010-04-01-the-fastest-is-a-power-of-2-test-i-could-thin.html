@@ -1,0 +1,20 @@
+---
+layout: post
+title: the fastest "is a power of 2" test I could think of
+published: true
+date: 2010-04-01
+categories:
+- performance
+- ruby
+posterous_url: http://radiospiel.org/the-fastest-is-a-power-of-2-test-i-could-thin
+posterous_slug: the-fastest-is-a-power-of-2-test-i-could-thin
+---
+<h1>0x2f - the fastest "is a power of 2" test I could think of</h1>
+
+<p>Can you beat this?</p>
+
+<div class="CodeRay">
+  <div class="code"><pre>def ispow2me2(n)
+  n &amp; (n - 1) == 0
+end</pre></div>
+</div>
