@@ -8,8 +8,6 @@ categories:
 - nginx
 - rails
 ---
-<h1>0x29 - nginx: Adding expiration headers</h1>
-
 <p>Today I was confronted with the tas of setting a proper expiration header to
 asset files. As a reminder: this is the aim:</p>
 

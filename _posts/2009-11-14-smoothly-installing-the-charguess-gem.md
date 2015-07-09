@@ -10,8 +10,6 @@ categories:
 - installing
 - ruby
 ---
-<h1>0x2a - Smoothly installing the "charguess" gem</h1>
-
 <p>One of the solutions to guessing a text's encoding in rails is the charguess gem. Sadly, though,
 this isn't well prepared to a "gem install charguess" session. The following commands will
 gladly download, compile and install the charguess gem on your machine:</p>

@@ -9,7 +9,6 @@ categories:
 - layout
 - web 2.0
 ---
-<h1>0x31 - A catch22 ahead: Free high quality web fonts</h1>
 
 <p>Finally <a href="http://webfonts.fonts.com/">someone</a> gives us free, legal, high quality web fonts in large numbers. Good bye <a href="http://www.google.com/search?q=MS+Arial" target="_blank">MS Arial</a>! Good bye <a href="http://www.google.com/search?q=MS+Trebuchet" target="_blank">MS Trebuchet</a>!</p>
 

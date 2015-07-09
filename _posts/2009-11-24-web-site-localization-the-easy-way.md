@@ -12,7 +12,6 @@ categories:
 - l10n
 - localization
 ---
-<h1>0x2c - Web site localization the easy way</h1>
 
 <div><ul>
 <li class="toc-h2"><a href="#markup_for_easy_l10n">Markup for easy l10n</a></li>

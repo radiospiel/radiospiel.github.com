@@ -9,7 +9,6 @@ categories:
 - Ruby
 - Titanium
 ---
-<h1>0x40 - One year later</h1>
 
 <p>Yea, there is a thing with blogs that they require permanent attention. Or they don't exist. Now, after nearly one year of non-existence lets push radiospiel.org back into existence.</p>
 

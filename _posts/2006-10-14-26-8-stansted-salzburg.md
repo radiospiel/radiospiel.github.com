@@ -3,9 +3,10 @@ layout: post
 title: 26. 8. - Stansted - Salzburg
 published: true
 date: 2003-08-26
-categories: []
+categories: 
+- cycling
 ---
-<p>Bin zurück. Kurze Statistik:</p>
+Bin zurück. Kurze Statistik:
 
 <ul>
 <li>1.300 Kilometern auf dem Tacho</li>

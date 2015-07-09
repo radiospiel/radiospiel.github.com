@@ -10,8 +10,9 @@ categories:
 
 <p>Can you beat this?</p>
 
-<div class="CodeRay">
-  <div class="code"><pre>def ispow2me2(n)
-  n &amp; (n - 1) == 0
-end</pre></div>
-</div>
+```ruby
+def ispow2me2(n)
+  n & (n - 1) == 0
+end
+```
+

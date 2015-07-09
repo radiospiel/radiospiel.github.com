@@ -10,7 +10,6 @@ categories:
 - render
 - transformation rules
 ---
-<h1>0x2e - Transformation rules</h1>
 
 <p>Finally I wrote together some ideas about how rendering could be organized in a better way.
 I might give a talk on that script on this thursday's rug-b meeting.</p>

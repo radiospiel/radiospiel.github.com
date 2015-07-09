@@ -9,8 +9,6 @@ categories:
 - google hosted assets
 - performance
 ---
-<h1>0x2b - (I) don't use Google assets</h1>
-
 <p>Recently people are moving to google hosted Javascript APIs. Which sounds good, at the
 first sight, because</p>
 
