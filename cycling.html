@@ -1,5 +1,7 @@
 ---
-layout: default
+layout: page
+title: Cycling
+permalink: /cycling/
 ---
 
 <div class="home">
@@ -8,7 +10,7 @@ layout: default
 
     <ul class="post-list">
         {% for post in site.posts %}
-            {% if post.frontpage != false %}
+            {% if post.categories contains "cycling" %}
             <li>
                 <span class="post-meta">{{ post.date | date_to_string }}</span>
                 <h2>
