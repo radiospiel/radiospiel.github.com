@@ -3,6 +3,7 @@ layout: post
 title: 21. 8. Staffin - Mallaig (103 km)
 published: true
 date: 2003-08-21
+frontpage: false 
 categories: 
 - cycling
 ---

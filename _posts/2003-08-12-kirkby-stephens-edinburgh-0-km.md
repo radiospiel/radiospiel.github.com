@@ -3,6 +3,7 @@ layout: post
 title: 12. 8. - Kirkby Stephens - Edinburgh (0 km)
 published: true
 date: 2003-08-12
+frontpage: false 
 categories: 
 - cycling
 ---

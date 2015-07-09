@@ -3,6 +3,7 @@ layout: post
 title: 23. 8. - Fort William - Edinburgh
 published: true
 date: 2003-08-23
+frontpage: false 
 categories: 
 - cycling
 ---

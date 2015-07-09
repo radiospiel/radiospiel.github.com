@@ -3,6 +3,7 @@ layout: post
 title: 22. 8. Mallaig - Fort William (127 km)
 published: true
 date: 2003-08-22
+frontpage: false 
 categories: 
 - cycling
 ---

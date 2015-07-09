@@ -3,6 +3,7 @@ layout: post
 title: 25. 8. - Edinburgh - Stansted
 published: true
 date: 2003-08-25
+frontpage: false 
 categories: 
 - cycling
 ---

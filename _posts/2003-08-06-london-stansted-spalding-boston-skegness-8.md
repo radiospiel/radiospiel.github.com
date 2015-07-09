@@ -3,6 +3,7 @@ layout: post
 title: 6.8. - London Stansted - Spalding - Boston - Skegness (82 km)
 published: true
 date: 2003-08-06
+frontpage: false 
 categories: 
 - cycling
 ---

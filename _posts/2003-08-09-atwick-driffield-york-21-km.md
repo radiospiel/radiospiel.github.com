@@ -3,7 +3,9 @@ layout: post
 title: 9.8. - Atwick - Driffield - York (21 km)
 published: true
 date: 2003-08-09
-categories: []
+frontpage: false 
+categories: 
+- cycling
 ---
 
 <strong>Cheated!</strong> Letzte nacht gab es ein heftiges Gewitter. Aber ich dachte mir: "Gewitter gehen vorueber, keine Sorge, morgen wird es sein wie immer: diesig, warm, trocken. Die Luft vielleicht uebertrieben feucht (und das ist krass: teilweise wird das Papier so feucht, dass mein Tintenstift zwar schreibt, die Tinte aber nicht trocknet!)"
