@@ -13,16 +13,14 @@ categories:
 
 <p>A specifc symbol to always refers to the same internal ruby object. Check the following:</p>
 
-<div class="CodeRay">
-  <div class="code"><pre>:a.object_id == :a.object_id</pre></div>
-</div>
+```
+:a.object_id == :a.object_id
 
 
 <p>will always be true, while the situation for Strings is different.</p>
 
-<div class="CodeRay">
-  <div class="code"><pre>&quot;a&quot;.object_id != &quot;a&quot;.object_id</pre></div>
-</div>
+```
+"a".object_id != "a".object_id
 
 
 <p>To ensure that symbols always refer to the same internal object an implementation must guarantee the following:</p>

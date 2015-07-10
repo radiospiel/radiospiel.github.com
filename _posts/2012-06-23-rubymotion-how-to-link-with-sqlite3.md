@@ -7,6 +7,5 @@ categories: []
 ---
 <p>The iOS-platform comes with a sqlite3 library. To use it from within a rubymotion-project, just add these lines to your Rakefile:</p>
 
-<div class="CodeRay">
-  <div class="code"><pre>app.libs &lt;&lt; &quot;-lsqlite3&quot;</pre></div>
-</div>
+```
+app.libs << "-lsqlite3"

@@ -15,15 +15,14 @@ categories:
 
 <p>Easy enough to do:</p>
 
-<div class="CodeRay">
-  <div class="code"><pre>User.find(:all) do |user|
+```ruby
+User.find(:all) do |user|
   number_of_hardcovers = user.books.inject(0) do |cnt, book| 
     cnt += book.hardcover? ? 1 : 0
   end
-  print_address(user) if number_of_hardcovers &gt;= 5
-end</pre></div>
-</div>
-
+  print_address(user) if number_of_hardcovers >= 5
+end
+```
 
 <p>(Well, you still need the package designed, packed, and put to the post office. But this exercise is left to you, reader. If you want my address for some holiday gift just ask.)</p>
 
@@ -43,23 +42,21 @@ end</pre></div>
 
 <p>There are several ways to deal w/that issue. You could nil-ing those instance variables, which will then garbage collect the no-longer needed memory at some point...</p>
 
-<div class="CodeRay">
-  <div class="code"><pre>User.find(:all) do |user|
+```ruby
+User.find(:all) do |user|
   ...
-  user.instance_variable_set &quot;@books&quot;, nil
-end</pre></div>
-</div>
-
+  user.instance_variable_set "@books", nil
+end
+```
 
 <p>..or you could just reload the user model:</p>
 
-<div class="CodeRay">
-  <div class="code"><pre>User.find(:all) do |user|
+```ruby
+User.find(:all) do |user|
   ...
   user.reload
-end</pre></div>
-</div>
-
+end
+```
 
 <p>However, the first solution is somewhat dirty, because it relies on a non-documented implementation detail. The second one is inefficient because it runs an additional database query on an object that we just don't need any longer...</p>
 
@@ -68,24 +65,16 @@ end</pre></div>
 
 <p>Just don't need any longer? Well then, let's get away with these objects as soon as possible! And while <em>Array#each</em> doesn't do this for us - using it the earliest point to get rid of these objects would be after each returned - we can roll out our own each, which is just a little bit destructive. It works (quite) like each, but removes each object after it is not needed anymore.</p>
 
-<div class="CodeRay">
-  <div class="code"><pre>class Array
+```ruby
+class Array
   def destructive_each!
     until empty?
       yield first
       shift
     end
   end
-end</pre></div>
-</div>
+end
+```
 
-
-<blockquote class="posterous_short_quote">
-  Note: the "yield first; shift" order is intended and has one significant 
-  difference to "yield shift" - think Exceptions!
-</blockquote>
-
-
-<h2>Ready for next year?</h2>
-
-<p>To have you prepared for next year's X-Mas ad campaign we will revisit this topic in one year's time. The issue then will be "How to handle 50 Million users" and quite likely involve map/reduce strategies. Just wait for "0x42 - Divide and Conquer", in stores Dec 2009! Your job in the meantime: go outgrow amazon!</p>
+Note: the `yield first; shift` order is intended and has one significant 
+difference to `yield shift` - think Exceptions!

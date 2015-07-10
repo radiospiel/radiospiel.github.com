@@ -16,41 +16,38 @@ so think twice when and how you use it.</p>
 
 <p>This code, for example, <em>might</em> deploy the race condition:</p>
 
-<div class="CodeRay">
-  <div class="code"><pre>class Model &lt; ActiveRecord::Base
+```
+class Model < ActiveRecord::Base
   def dependant
     @dependant ||= Dependant.find_or_create_by_model_id(id)
   end
-end</pre></div>
-</div>
+end
 
 
 <p>(This code tries to create the <em>dependant</em> model only if really needed.) This runs fine when you test it in the console, but beware: danger's ahead! To understand the problem let's have a look at the SQL code generated and executed by running the following piece of code, which should result in exactly one dependant object:</p>
 
-<div class="CodeRay">
-  <div class="code"><pre>m = Model.create! :key =&gt; &quot;key&quot;, :data =&gt; &quot;&quot;
+```
+m = Model.create! :key => "key", :data => ""
 puts m.dependant.inspect
 
 m2 = Model.find_by_id(m.id)
-puts m2.dependant.inspect</pre></div>
-</div>
+puts m2.dependant.inspect
 
 
 <p>This code results in the following SQL code (note that I am using Postgresql, and that I edited the log to show only the important stuff)</p>
 
-<div class="CodeRay">
-  <div class="code"><pre>BEGIN
-  INSERT INTO models (&quot;key&quot;, &quot;data&quot;) VALUES('key', '')
-COMMIT
-
-SELECT * FROM dependants WHERE (dependants.&quot;model_id&quot; = 9) LIMIT 1
+```
 BEGIN
-  INSERT INTO dependants (&quot;model_id&quot;) VALUES(9)
+  INSERT INTO models ("key", "data") VALUES('key', '')
 COMMIT
 
-SELECT * FROM models WHERE (models.&quot;id&quot; = 9) LIMIT 1
-SELECT * FROM dependants WHERE (dependants.&quot;model_id&quot; = 9) LIMIT 1</pre></div>
-</div>
+SELECT * FROM dependants WHERE (dependants."model_id" = 9) LIMIT 1
+BEGIN
+  INSERT INTO dependants ("model_id") VALUES(9)
+COMMIT
+
+SELECT * FROM models WHERE (models."id" = 9) LIMIT 1
+SELECT * FROM dependants WHERE (dependants."model_id" = 9) LIMIT 1
 
 
 <p>This code seems to result in one and only one Dependant object, which is linked with the Model object. However, just imagine you would run the same sequence of SQL code from two different database connections (as would be the case with two mongrel instances, for example). The execution order could be:</p>
@@ -59,19 +56,17 @@ SELECT * FROM dependants WHERE (dependants.&quot;model_id&quot; = 9) LIMIT 1</pr
 <li>
 <p>Connection 1:
 </p>
-<div class="CodeRay">
-  <div class="code"><pre>SELECT * FROM models WHERE (models.&quot;id&quot; = 3) LIMIT 1
-  SELECT * FROM dependants WHERE (dependants.&quot;model_id&quot; = 3) LIMIT 1</pre></div>
-</div>
+```
+SELECT * FROM models WHERE (models."id" = 3) LIMIT 1
+  SELECT * FROM dependants WHERE (dependants."model_id" = 3) LIMIT 1
 
 </li>
 <li>
 <p>Connection 2:
 </p>
-<div class="CodeRay">
-  <div class="code"><pre>SELECT * FROM models WHERE (models.&quot;id&quot; = 3) LIMIT 1
-  SELECT * FROM dependants WHERE (dependants.&quot;model_id&quot; = 3) LIMIT 1</pre></div>
-</div>
+```
+SELECT * FROM models WHERE (models."id" = 3) LIMIT 1
+  SELECT * FROM dependants WHERE (dependants."model_id" = 3) LIMIT 1
 
 </li>
 </ul>
@@ -102,7 +97,7 @@ SELECT * FROM dependants WHERE (dependants.&quot;model_id&quot; = 9) LIMIT 1</pr
 
 <ul>
 <li>Not exactly the topic of this weeks entry, but a quite interesting post
-about <a href="http://tektastic.com/2007/09/on-ruby-on-rails-with-postgresql-and.html%22&gt;<a href="http://tektastic.com/2007/09/on-ruby-on-rails-with-postgresql-and.html">http://tektastic.com/2007/09/on-ruby-on-rails-with-postgresql-and.html</a>">using foreign keys</a> in ruby.</li>
+about <a href="http://tektastic.com/2007/09/on-ruby-on-rails-with-postgresql-and.html%22><a href="http://tektastic.com/2007/09/on-ruby-on-rails-with-postgresql-and.html">http://tektastic.com/2007/09/on-ruby-on-rails-with-postgresql-and.html</a>">using foreign keys</a> in ruby.</li>
 <li>At "Shades of Gray" you'll find some <a href="http://blog.grayproductions.net/articles/five_activerecord_tips">thoughts</a>
 about that as well. I do disagree with that solution, though.</li>
 </ul>

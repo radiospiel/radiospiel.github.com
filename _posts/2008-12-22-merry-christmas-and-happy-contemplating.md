@@ -12,53 +12,48 @@ categories:
 <li>
 <p>What is the output of the following?</p>
 
-<div class="CodeRay">
-  <div class="code"><pre>puts false or 1
+```
+puts false or 1
  puts false || 1
- puts false | 1</pre></div>
-</div>
+ puts false | 1
 
 </li>
 <li>
 <p>What is the output of the following?</p>
 
-<div class="CodeRay">
-  <div class="code"><pre>puts 1 and false
- puts 1 &amp;&amp; false</pre></div>
-</div>
+```
+puts 1 and false
+ puts 1 &amp;&amp; false
 
 </li>
 <li>
 <p>What is the result of</p>
 
-<div class="CodeRay">
-  <div class="code"><pre>puts File.dirname(&quot;foo.bar&quot;)
- puts File.dirname(&quot;/foo.bar&quot;)
- puts File.dirname(&quot;/foo.bar/&quot;)</pre></div>
-</div>
+```
+puts File.dirname("foo.bar")
+ puts File.dirname("/foo.bar")
+ puts File.dirname("/foo.bar/")
 
 </li>
 <li>
 <p>How often does this script wish you a merry X-Mas when run via '<i>ruby </i>'?</p>
 
-<div class="CodeRay">
-  <div class="code"><pre>puts &quot;Merry XMas!&quot;
+```
+puts "Merry XMas!"
  require __FILE__
- require File.dirname(__FILE__) + &quot;/&quot; + File.basename(__FILE__)</pre></div>
-</div>
+ require File.dirname(__FILE__) + "/" + File.basename(__FILE__)
 
 </li>
 <li>
 <p>And this script?</p>
 
-<div class="CodeRay">
-  <div class="code"><pre>puts &quot;Merry XMas!&quot;
+```
+puts "Merry XMas!"
  require __FILE__
- require File.dirname(__FILE__) + &quot;/&quot; + File.basename(__FILE__)
+ require File.dirname(__FILE__) + "/" + File.basename(__FILE__)
 
- Dir.mkdir &quot;a&quot; rescue nil
- require File.dirname(__FILE__) + &quot;/a/../&quot; + File.basename(__FILE__)</pre></div>
-</div>
+ Dir.mkdir "a" rescue nil
+ require File.dirname(__FILE__) + "/a/../" + File.basename(__FILE__)
 
 </li>
 <li>

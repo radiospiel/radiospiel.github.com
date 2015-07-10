@@ -11,33 +11,31 @@ categories:
 ---
 <p>It is not chrismas, hence no quiz, but this was strangely surprising:</p>
 
-<div class="CodeRay">
-  <div class="code"><pre>class A
-  @@t = &quot;A::@@t&quot;
-  T=&quot;A::T&quot;
+```
+class A
+  @@t = "A::@@t"
+  T="A::T"
 
   def self.s1; @@t; end
   def self.s2; T; end
 end
 
-class B &lt; A
+class B < A
   def self.s1; @@t; end
   def self.s2; T; end
 end
 
-class C &lt; A
-  @@t = &quot;C::@@t&quot;
-  T=&quot;C::T&quot;
+class C < A
+  @@t = "C::@@t"
+  T="C::T"
   def self.s1; @@t; end
   def self.s2; T; end
 end
 
-[ A.s1, A.s2, B.s1, B.s2, C.s1, C.s2 ]</pre></div>
-</div>
+[ A.s1, A.s2, B.s1, B.s2, C.s1, C.s2 ]
 
 
 <p>gives you</p>
 
-<div class="CodeRay">
-  <div class="code"><pre>[&quot;C::@@t&quot;, &quot;A::T&quot;, &quot;C::@@t&quot;, &quot;A::T&quot;, &quot;C::@@t&quot;, &quot;C::T&quot;]</pre></div>
-</div>
+```
+["C::@@t", "A::T", "C::@@t", "A::T", "C::@@t", "C::T"]

@@ -13,11 +13,11 @@ categories:
 
 <p>Here I want to ask you, dear reader, for your praised input. As you might know, this is the proposed 'with_bodywork' usage:</p>
 
-<div class="CodeRay">
-  <div class="code"><pre>class BlaController &lt; ApplicationController
+```
+class BlaController < ApplicationController
 
   def index
-    render :layout =&gt; &quot;web&quot;, :text =&gt; &quot;This is some text.&quot;
+    render :layout => "web", :text => "This is some text."
   end
 
   private
@@ -32,14 +32,13 @@ categories:
   after_filter :add_somefunkystuff
 
   def add_somefunkystuff
-    link_to_file &quot;some_app.js&quot;    # add some JS file to the header
-    link_to_file &quot;some_app.css&quot;   # add some CSS to the header
+    link_to_file "some_app.js"    # add some JS file to the header
+    link_to_file "some_app.css"   # add some CSS to the header
 
                                   # add some stuff to the HTML body
-    append_html &quot;&lt;p&gt;This page is dignified with some bodywork.&lt;/p&gt;&quot;
+    append_html "<p>This page is dignified with some bodywork.</p>"
   end
-end</pre></div>
-</div>
+end
 
 
 <p>This looks a bit chatty to me. Does any of you has any idea about a more concise syntax here?</p>

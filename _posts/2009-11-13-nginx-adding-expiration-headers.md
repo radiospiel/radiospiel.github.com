@@ -21,8 +21,8 @@ parameter don't add an expiration header.</li>
 <p>After surfing the web for ages I found no working solution. In any case, the
 following did the trick. Read below for an explanation and how I checked this:</p>
 
-<div class="CodeRay">
-  <div class="code"><pre># Server settings. server_name and path should match.
+```
+# Server settings. server_name and path should match.
 server {
   listen 80;
   server_name server.dev;
@@ -42,11 +42,11 @@ server {
     }
 
     if ($args ~* ^[0-9]+$) {
-        set $file &quot;${file}C&quot;;
+        set $file "${file}C";
     }
 
     # existing and can be kept by the client?
-    if ($file = &quot;XC&quot;) {
+    if ($file = "XC") {
         expires 365d;    
     }
 
@@ -54,8 +54,7 @@ server {
     passenger_enabled on;
     rails_env production;
   }
-}</pre></div>
-</div>
+}
 
 
 <p>This takes the following into account:</p>
@@ -80,26 +79,24 @@ It is sad you find the good stuff <strong>only</strong> after banging your head 
 <li>
 <p>Get the <em>robots.txt</em> file, it must not contain an "Expires" header:</p>
 
-<div class="CodeRay">
-  <div class="code"><pre>~/site&gt; curl -I http://server.dev/robots.txt
+```
+~/site> curl -I http://server.dev/robots.txt
  HTTP/1.1 200 OK
  Server: nginx/0.7.61
- ...</pre></div>
-</div>
+ ...
 
 </li>
 <li>
 <p>Get the <em>robots.txt</em> file, with a time stamp; it must contain an "Expires" header:</p>
 
-<div class="CodeRay">
-  <div class="code"><pre>~/site&gt; curl -I http://server.dev/robots.txt?1234
+```
+~/site> curl -I http://server.dev/robots.txt?1234
  HTTP/1.1 200 OK
  Server: nginx/0.7.61
  Date: Fri, 13 Nov 2009 00:01:23 GMT
  Last-Modified: Sat, 08 Aug 2009 20:28:57 GMT
  Expires: Sat, 13 Nov 2010 00:01:23 GMT
- ...</pre></div>
-</div>
+ ...
 
 </li>
 <li>
@@ -107,15 +104,14 @@ It is sad you find the good stuff <strong>only</strong> after banging your head 
 header, but must refer to Phusion Passenger in the "Server" header, and
 this regardless of whether or not a timestamp is set:</p>
 
-<div class="CodeRay">
-  <div class="code"><pre>~/sites/whispler&gt; curl -I http://server.dev/xx.js?1234
+```
+~/sites/whispler> curl -I http://server.dev/xx.js?1234
   ...
   Server: nginx/0.7.61 + Phusion Passenger 2.2.5 (mod_rails/mod_rack)
 
-  ~/sites/whispler&gt; curl -I http://server.dev/xx.js
+  ~/sites/whispler> curl -I http://server.dev/xx.js
   ...
-  Server: nginx/0.7.61 + Phusion Passenger 2.2.5 (mod_rails/mod_rack)</pre></div>
-</div>
+  Server: nginx/0.7.61 + Phusion Passenger 2.2.5 (mod_rails/mod_rack)
 
 </li>
 </ol>

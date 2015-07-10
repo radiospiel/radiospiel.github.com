@@ -35,12 +35,11 @@ categories:
 
 <p>Speaking of SQL: ActiveRecord is sometimes really hard to use, because it tries to hide so much of the SQL logic, but misses some crucial points. Views? Foreign keys? Database based validations? All this stuff is sometimes easier to do in SQL as it is in Rails, doesn't have race conditions, and performs usually much better. And nested associations can get pretty ugly. I mean, where is the point of writing</p>
 
-<div class="CodeRay">
-  <div class="code"><pre>customer.latest_contracts.
+```
+customer.latest_contracts.
   with_pictures.
   ordered_backwards.
-  limit(5).find(:all, :include =&gt; &quot;images&quot;, :order =&gt; &quot;RANDOM()&quot;)</pre></div>
-</div>
+  limit(5).find(:all, :include => "images", :order => "RANDOM()")
 
 
 <p>(ok, I made that up) when the same can a) be expressed in SQL as elegantly b) the code is not DB agnostic anyways (or how does your database call the RAND() function) and c) a SQL code can run on many "customer" objects at the same time while this is hard to do with plain ActiveRecord. In hiding some parts of SQL Rails actually discourages developers from learning database stuff, which might effect in inefficient or erroneous applications.</p>
@@ -61,12 +60,11 @@ categories:
 
 <p>...and quite efficiently at times: Rails offers things that quite invite you to shoot you in your own foot. See the style in which rails suggests writing <a href="/0x0b-saving-is-a-virtue-avarice-is-vice/">functional tests</a>. (If you don't understand the following please check that article.) A much better and cleaner solution would be, of course, something along the lines of</p>
 
-<div class="CodeRay">
-  <div class="code"><pre>class FunctionalTest &lt; ActionController::TestCase
+```
+class FunctionalTest < ActionController::TestCase
   tests :duu_controller
   ...
-end</pre></div>
-</div>
+end
 
 
 <p>Or see the "great new feature" where Rails supports not_modified_since. I am pretty sure that many people will try to use that feature and will just fail, because a model's modification date is usually not really consistent: if you modify a has_many association the 'updated_at' value of the model holding the association will <strong>NOT</strong> reflect that change! That means the change will not be sent to the client.</p>
@@ -81,25 +79,22 @@ end</pre></div>
 
 <p>Say you have Books, and each Book has a thumbnail. Say you show a list of books. Say your HTML designer wants to embed thumbnails. Easy as pie:</p>
 
-<div class="CodeRay">
-  <div class="code"><pre>&lt;%= image book.thumbnail.image_file %=&gt;</pre></div>
-</div>
+```
+<%= image book.thumbnail.image_file %=>
 
 
 <p>and then the performance goes down. Easy to fix, right? Just use eager-loading. So you change the controller action into something like</p>
 
-<div class="CodeRay">
-  <div class="code"><pre>@books = Book.find :all, 
-  :conditions =&gt; [ &quot;user.id=?&quot;, current_user ], 
-  :include =&gt; [ &quot;thumbnail&quot; ]</pre></div>
-</div>
+```
+@books = Book.find :all, 
+  :conditions => [ "user.id=?", current_user ], 
+  :include => [ "thumbnail" ]
 
 
 <p>But wait! Why should the controller code know about a designers decision to show thumbnail images? What is missing here is some piece of code to mass load an association on an array of objects, in an efficient manner. The designer would put that piece into the view, like this:</p>
 
-<div class="CodeRay">
-  <div class="code"><pre>&lt;% @books.load_association &quot;thumbnail&quot; %=&gt;</pre></div>
-</div>
+```
+<% @books.load_association "thumbnail" %=>
 
 
 <h2>But still...</h2>

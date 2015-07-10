@@ -13,18 +13,17 @@ categories:
 
 
 
-<div class="CodeRay">
-  <div class="code"><pre>~ =&gt; irb
-&gt;=&gt; puts false or 1
+```
+~ => irb
+>=> puts false or 1
 false
-=&gt; 1
-&gt;=&gt; puts false || 1
+=> 1
+>=> puts false || 1
 1
-=&gt; nil
-&gt;=&gt; puts false | 1
+=> nil
+>=> puts false | 1
 true
-=&gt; nil</pre></div>
-</div>
+=> nil
 
 
 
@@ -35,16 +34,15 @@ true
 
 <p>For similar reasons - "and" binds pretty weak as well:</p>
 
-<div class="CodeRay">
-  <div class="code"><pre>~ =&gt; irb
-&gt;=&gt; puts 1 and false
+```
+~ => irb
+>=> puts 1 and false
 1
-=&gt; nil
-&gt;=&gt; puts 1 &amp;&amp; false
+=> nil
+>=> puts 1 &amp;&amp; false
 false
-=&gt; nil
-&gt;=&gt;</pre></div>
-</div>
+=> nil
+>=>
 
 
 
@@ -55,11 +53,10 @@ false
 
 
 
-<div class="CodeRay">
-  <div class="code"><pre>puts File.dirname(&quot;foo.bar&quot;)     # &quot;.&quot;
-puts File.dirname(&quot;/foo.bar&quot;)   # &quot;/&quot;
-puts File.dirname(&quot;/foo.bar/&quot;)  # &quot;/&quot;</pre></div>
-</div>
+```
+puts File.dirname("foo.bar")     # "."
+puts File.dirname("/foo.bar")   # "/"
+puts File.dirname("/foo.bar/")  # "/"
 
 
 
@@ -72,22 +69,20 @@ puts File.dirname(&quot;/foo.bar/&quot;)  # &quot;/&quot;</pre></div>
 
 <p>this script file wishes you a merry X-Mas three times:</p>
 
-<div class="CodeRay">
-  <div class="code"><pre>puts &quot;Merry XMas!&quot;
+```
+puts "Merry XMas!"
 require __FILE__
-require File.dirname(__FILE__) + &quot;/&quot; + File.basename(__FILE__)</pre></div>
-</div>
+require File.dirname(__FILE__) + "/" + File.basename(__FILE__)
 
 
 
 <p>Even though "require" loads a file only once, it determines whether or not a file has already been loaded by the parameter to <i>rquire</i>. So "a.rb" and "./a.rb" are differenet files with respect to "require" - even though both filenames refer to the same file, as we humans are well aware. That means, if one of your source files must not be loaded more than once - for whatever reason - you must do something like</p>
 
-<div class="CodeRay">
-  <div class="code"><pre>unless defined?(THIS_FILE_ALREADY_LOADED)
+```
+unless defined?(THIS_FILE_ALREADY_LOADED)
 THIS_FILE_ALREADY_LOADED=true
   ...
-end</pre></div>
-</div>
+end
 
 
 
@@ -98,14 +93,13 @@ end</pre></div>
 
 <p></p>
 
-<div class="CodeRay">
-  <div class="code"><pre>puts &quot;Merry XMas!&quot;
+```
+puts "Merry XMas!"
 require __FILE__
-require File.dirname(__FILE__) + &quot;/&quot; + File.basename(__FILE__)
+require File.dirname(__FILE__) + "/" + File.basename(__FILE__)
 
-Dir.mkdir &quot;a&quot; rescue nil
-require File.dirname(__FILE__) + &quot;/a/../&quot; + File.basename(__FILE__)</pre></div>
-</div>
+Dir.mkdir "a" rescue nil
+require File.dirname(__FILE__) + "/a/../" + File.basename(__FILE__)
 
 
 

@@ -17,13 +17,11 @@ categories:
 
 <p>But wait! "Components"?</p>
 
-<blockquote class="posterous_medium_quote">
-I really like what DHH said in the above link: &ldquo;The problem with components is that they&rsquo;ve never actually been in style. We just forgot to tell people that. Our bad, now being rectified.&rdquo; So, for starters, they were never popular.
-
-The other main reason is that Railers who have implemented components are noticing themselves refactoring away from them. It&rsquo;s becoming clear that, in most circumstances, plugins or helpers or possibly even an engine would serve an application better than components.
-
-Lastly, they&rsquo;re slow. Blecchhh. That&rsquo;s a show-stopper.</blockquote>
-
+> I really like what DHH said in the above link: &ldquo;The problem with components is that they&rsquo;ve never actually been in style. We just forgot to tell people that. Our bad, now being rectified.&rdquo; So, for starters, they were never popular.
+> 
+> The other main reason is that Railers who have implemented components are noticing themselves refactoring away from them. It&rsquo;s becoming clear that, in most circumstances, plugins or helpers or possibly even an engine would serve an application better than components.
+> 
+> Lastly, they&rsquo;re slow. Blecchhh. That&rsquo;s a show-stopper.
 
 <p>(Shamelessly cited from <a href="http://mysterycoder.blogspot.com/2008/02/rails-components-i-do-not-think-that.html">mysterycoder</a>.)</p>
 
@@ -31,23 +29,23 @@ Lastly, they&rsquo;re slow. Blecchhh. That&rsquo;s a show-stopper.</blockquote>
 
 <p>But here are some good news: at least the speed issue is not really a speed issue anymore. I tested a do-nearly-nothing application, with only a few before_filters thrown in for amusement. This is the controller portion:</p>
 
-<div class="CodeRay">
-  <div class="code"><pre>def test1; render :layout =&gt; false;end
-def test2; render :layout =&gt; false;end
+```ruby
+def test1; render :layout => false;end
+def test2; render :layout => false;end
 
-def innard; render :partial =&gt; &quot;innard&quot;;end</pre></div>
-</div>
+def innard; render :partial => "innard";end
+```
 
 
 <p>and the html templates are along the lines of</p>
 
-<div class="CodeRay">
-  <div class="code"><pre>hi from &lt;%= __FILE__ %&gt;
-&lt;%= render :partial =&gt; &quot;innard&quot; %&gt;
+```erb
+hi from <%= __FILE__ %>
+<%= render :partial => "innard" %>
 
-hi from &lt;%= __FILE__ %&gt;
-&lt;%= render_component :action =&gt; &quot;innard&quot; %&gt;</pre></div>
-</div>
+hi from <%= __FILE__ %>
+<%= render_component :action => "innard" %>
+```
 
 
 <p>With this setup I measured using "ab" against a single mongrel serving the pages, and I found the "test1" testcase, i.e. without components, to be delivered in 24 ms. This includes the network overhead; rails logs the response time to be 6 msecs. The render times when using components is 30 msecs (12 msecs on the Rails side only.) While 6ms vs. 12 ms sounds like only half the speed, this is for more or less empty actions. The plain difference would still be 6 ms: on any real action this should not be that much of an issue. If it was, you shouldn't use rails in the first place but look into Merb or Metal instead. Right?</p>

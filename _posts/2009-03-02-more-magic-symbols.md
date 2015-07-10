@@ -11,28 +11,26 @@ categories:
 ---
 <p>With just that small addition:</p>
 
-<div class="CodeRay">
-  <div class="code"><pre>class Symbol
-  alias_method :old_eeq, :&quot;===&quot; 
+```
+class Symbol
+  alias_method :old_eeq, :"===" 
 
   def ===(obj)
     (obj.respond_to?(self) &amp;&amp; obj.send(self)) ||
     old_eeq(obj)
   end
-end</pre></div>
-</div>
+end
 
 
 <p>you can do things like</p>
 
-<div class="CodeRay">
-  <div class="code"><pre>case current_user
-when :admin?    then &quot;admin&quot;
-when :regular?  then &quot;something_for_regulars&quot;
-when :guest?   then &quot;do_guest_stuuff&quot;
-else &quot;huh&quot;
-end</pre></div>
-</div>
+```
+case current_user
+when :admin?    then "admin"
+when :regular?  then "something_for_regulars"
+when :guest?   then "do_guest_stuuff"
+else "huh"
+end
 
 
 <p>Isn't that cool much more readable?</p>

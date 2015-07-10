@@ -11,16 +11,14 @@ categories:
 
 <p>For everybody else: C/C++ programs can usually be compiled in two different modi, debug and release: in debug mode the following C source code line</p>
 
-<div class="CodeRay">
-  <div class="code"><pre>assert(0 == 1)</pre></div>
-</div>
+```
+assert(0 == 1)
 
 
 <p>tests the condition "0 == 1", which is false even in C, and then aborts the program with a message like this:</p>
 
-<div class="CodeRay">
-  <div class="code"><pre>source.c(12): Assertion failed: 0 == 1</pre></div>
-</div>
+```
+source.c(12): Assertion failed: 0 == 1
 
 
 <p>In release mode, however, this statement is completely ignored and doesn't affect speed and size of the final binary. This is an invaluable tool for us coders: using assert you can test for consistentency of application internal data, and when releasing these tests are justed skipped.</p>
@@ -37,44 +35,39 @@ categories:
 </ol>
 <p>What could the interface of such an assert function look like? As 4) states we need some way to write down code that should or should not be evaluated depending on some global setting. One way to achieve this are code blocks. That code block has always to test for the condition in some way: what we could use is the block's return value. To set a message for the assertion from within the code block we could pass in some object that provides a method to do just that. In code, that would be</p>
 
-<div class="CodeRay">
-  <div class="code"><pre>assert do |a|
-  a.message = &quot;Something is strange here!&quot;
+```
+assert do |a|
+  a.message = "Something is strange here!"
   0 != 1
-end</pre></div>
-</div>
+end
 
 
 <p>In this example we define and pass around the message string even in release mode. It should not have much impact, because it is a string constant (and not a dynamic message a la "#{the_result_of_some_complicated_and_long_running_method()}")</p>
 
 <p>The following syntax could allow this:</p>
 
-<div class="CodeRay">
-  <div class="code"><pre>assert  &quot;Something is strange here!&quot; do
+```
+assert  "Something is strange here!" do
   0 != 1
-end</pre></div>
-</div>
+end
 
 
 <p>or, somewhat more compact</p>
 
-<div class="CodeRay">
-  <div class="code"><pre>assert(&quot;Something is strange here!&quot;) { 0 != 1 }</pre></div>
-</div>
+```
+assert("Something is strange here!") { 0 != 1 }
 
 
 <p>Avoiding a custom message and sticking to some default message this turns into:</p>
 
-<div class="CodeRay">
-  <div class="code"><pre>assert { 0 != 1 }</pre></div>
-</div>
+```
+assert { 0 != 1 }
 
 
 <p>which is pretty close to the C example above. This gives us the following interface for the assert() function:</p>
 
-<div class="CodeRay">
-  <div class="code"><pre>assert(msg=nil, &amp;block)</pre></div>
-</div>
+```
+assert(msg=nil, &amp;block)
 
 
 <p>with the block either having 0 or 1 arguments.</p>
@@ -89,49 +82,46 @@ end</pre></div>
 
 <p>The application should abort when an assertion fails. In C this is usually done by calling exit() or a similar function which usually kills the running process. While we could do something like that - using Kernel#exit - but there is a better way: we can have assert throw an Exception - that usually leads to abortion as well, but allows to catch it and do something about it. So, this could be our Exception class:</p>
 
-<div class="CodeRay">
-  <div class="code"><pre>class Assertion &lt; RuntimeError
+```
+class Assertion < RuntimeError
   attr :message, true
 
   # Rubys default exception handler prints the string representation
   # of the exception object, i.e. the to_s return value: This is where
   # we define our message.
   def to_s
-    @message ? &quot;assertion failed: #{@message}&quot; : &quot;assertion failed.&quot;
+    @message ? "assertion failed: #{@message}" : "assertion failed."
   end
-end</pre></div>
-</div>
+end
 
 
 <p>We still need some object to pass into the code block. This must just hold the message attribute. For reasons of simplicity we can just use an Assertion object: remember that there is nothing special about Assertion (and RuntimeError) objects: they behave like any other object.</p>
 
 <p>Another valuable addition would be a fail! method, that lets the assertion fail from within the code block. This lets you write code like this:</p>
 
-<div class="CodeRay">
-  <div class="code"><pre>assert! do |a|
+```
+assert! do |a|
   a.fail! if !condition1
-  a.fail!(&quot;Hey that is strange&quot;) if !condition2
-end</pre></div>
-</div>
+  a.fail!("Hey that is strange") if !condition2
+end
 
 
 <p>Note that the codeblock in the above example will never return a value
 different from nil: the assert function must not throw in that case.</p>
 
-<div class="CodeRay">
-  <div class="code"><pre>class Assertion &lt; RuntimeError
+```
+class Assertion < RuntimeError
   def fail!(message=nil)
     self.message = message
     raise self
   end
-end</pre></div>
-</div>
+end
 
 
 <p>Now that we have the interface it is time for our <em>assert()</em> implementations. The production mode implementation, of course, is simple, but the debug mode is not that complicated either. But where is the right place for the implementations? I decided to add them as methods to the Object class - this way they exist in each object, and we could extend our implementation to print information about the "self" object in the assert's context.</p>
 
-<div class="CodeRay">
-  <div class="code"><pre>class Object
+```
+class Object
   def _release_assert(message=nil, &amp;block)
   end
 
@@ -141,20 +131,18 @@ end</pre></div>
     a.fail! if yield(a) == false
   end
 
-  alias_method :&quot;assert!&quot;, :_release_assert
-end</pre></div>
-</div>
+  alias_method :"assert!", :_release_assert
+end
 
 
 <p>The alias_method adds an "assert" alias for the release_assert method, which deactivates the assert functionality by default. We still need to add some method to enable it - a Assertion class method seems the logical place here:</p>
 
-<div class="CodeRay">
-  <div class="code"><pre>class Assertion
+```
+class Assertion
   def self.enable(flag)
-    Object.send :alias_method, :&quot;assert!&quot;, flag ? :_debug_assert : :_release_assert
+    Object.send :alias_method, :"assert!", flag ? :_debug_assert : :_release_assert
   end
-end</pre></div>
-</div>
+end
 
 
 <p>Note the use of <em>Object.send :alias_method</em>: as <em>alias_method</em> is a private method we can not call it directly. For Rails users we add an <em>Assertion.init</em> function that uses the RAILS_ENV value to automatically determine the right mode. This way you only have to add Assertion.init to your environment.rb and are ready to run.</p>
@@ -163,37 +151,34 @@ end</pre></div>
 
 <p>The last piece missing is to include the source code position in the output. This is pretty easy thanks to the RuntimeError#backtrace method, which returns an array containing the source code positions of the call stack:</p>
 
-<div class="CodeRay">
-  <div class="code"><pre>class Assertion &lt; RuntimeError
+```
+class Assertion < RuntimeError
   def to_s
     source_code = backtrace[some_index] # what is the index??
-    @message ? &quot;assertion failed: #{@message}&quot; : &quot;assertion failed.&quot;
+    @message ? "assertion failed: #{@message}" : "assertion failed."
   end
-end</pre></div>
-</div>
+end
 
 
 <p>Now we only have to know the correct index into that array. And while we could use the Assertion's backtrace in principal (as in the last code piece) we don't have control over when the Assertion is failed. If a user does something like:</p>
 
-<div class="CodeRay">
-  <div class="code"><pre>assert! do |a|
-  some_array.each { |item| a.fail!(&quot;Some invalid item&quot;) if item.invalid }
-  a.fail!(&quot;or fail always - for demonstration purposes...&quot;)
-end</pre></div>
-</div>
+```
+assert! do |a|
+  some_array.each { |item| a.fail!("Some invalid item") if item.invalid }
+  a.fail!("or fail always - for demonstration purposes...")
+end
 
 
 <p>these two failures would give different backtraces. Therefore we raise and catch an exception in assert to determine the source code position:</p>
 
-<div class="CodeRay">
-  <div class="code"><pre>def _debug_assert(message=nil, &amp;block)
+```
+def _debug_assert(message=nil, &amp;block)
   backtrace = raise rescue $!.backtrace
   a = Assertion.new
   a.message = message
   a.source = backtrace[1]
   a.fail! if yield(a) == false
-end</pre></div>
-</div>
+end
 
 
 <p>And voila! assert!() to the rescue!</p>

@@ -10,7 +10,7 @@ categories: []
 <blockquote class="posterous_short_quote">Re: es gibt keine gleichteuren Produkte
 MCalypso (136 Beiträge seit 7.7.03)    
 
-&gt; GIMP ist mindestens so gut.
+> GIMP ist mindestens so gut.
 
 vor allem bei CMYK ;)</blockquote>
 

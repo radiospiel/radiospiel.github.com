@@ -23,12 +23,11 @@ categories: []
 
 <p>But delivering each measurement taking ~500 msecs? (Note: my server is in Germany. Theirs probably not.) Ok, the gem offers a queueing option. Which is nice. Now I queue my measurements, run the script &ndash; fast as hell, as before &ndash; and then, &hellip;, no data. Sure, one probably has to flush the queue manually. No problem for me:</p>
 
-<div class="CodeRay">
-  <div class="code"><pre>at_exit do
+```
+at_exit do
   $librato_metrics_queue.submit
-end</pre></div>
-</div>
-
+end
+```
 
 <p>The <code>at_exit</code> handler nicely flushes the queue. This works nice for a run-once script situation; I wouldn&rsquo;t want this inside a request/response cycle though. There is certainly room for improvement: just run the queue in a separate thread.</p>
 

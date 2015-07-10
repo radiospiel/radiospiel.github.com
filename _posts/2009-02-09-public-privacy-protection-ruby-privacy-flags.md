@@ -15,8 +15,8 @@ categories:
 
 <p>This is the source that I used for my tests:</p>
 
-<div class="CodeRay">
-  <div class="code"><pre>#
+```
+#
 # Explore how private, protected, and public works
 #
 class A
@@ -31,14 +31,14 @@ class A
   def private_method; true; end
 end
 
-class B &lt; A; end
+class B < A; end
 class C; end
 
 $target = A.new
 
 module Call
   def call(sym)
-    send(&quot;call_#{sym}&quot;) &amp;&amp; &quot;Called #{sym} method&quot; rescue &quot;Could not call #{sym} method: #{$!}&quot;
+    send("call_#{sym}") &amp;&amp; "Called #{sym} method" rescue "Could not call #{sym} method: #{$!}"
   end
 
   def call_private;           $target.private_method; end
@@ -52,41 +52,39 @@ a = A.new
 b = B.new
 c = C.new
 
-[ [ &quot;$target&quot;, $target ], [ &quot;a&quot;, a ], [ &quot;b&quot;, b ], [ &quot;c&quot;, c ] ].each do |name, obj|
+[ [ "$target", $target ], [ "a", a ], [ "b", b ], [ "c", c ] ].each do |name, obj|
   obj.extend Call
 
-  puts &quot;== #{name} ==============================================&quot;
-  puts &quot;  #{obj.call :private}&quot;
-  puts &quot;  #{obj.call :checked_private}&quot; if name == &quot;$target&quot;
-  puts &quot;  #{obj.call :self_private}&quot;    if name == &quot;$target&quot;
-  puts &quot;  #{obj.call :protected}&quot;
-  puts &quot;  #{obj.call :public}&quot;
-end</pre></div>
-</div>
+  puts "== #{name} =============================================="
+  puts "  #{obj.call :private}"
+  puts "  #{obj.call :checked_private}" if name == "$target"
+  puts "  #{obj.call :self_private}"    if name == "$target"
+  puts "  #{obj.call :protected}"
+  puts "  #{obj.call :public}"
+end
 
 
 <p>and these are the results</p>
 
-<div class="CodeRay">
-  <div class="code"><pre>== $target ==============================================
-  Could not call private method: private method `private_method' called for #&lt;A:0x278a8&gt;
+```
+== $target ==============================================
+  Could not call private method: private method `private_method' called for #<A:0x278a8>
   Called checked_private method
-  Could not call self_private method: private method `private_method' called for #&lt;A:0x278a8&gt;
+  Could not call self_private method: private method `private_method' called for #<A:0x278a8>
   Called protected method
   Called public method
 == a ==============================================
-  Could not call private method: private method `private_method' called for #&lt;A:0x278a8&gt;
+  Could not call private method: private method `private_method' called for #<A:0x278a8>
   Called protected method
   Called public method
 == b ==============================================
-  Could not call private method: private method `private_method' called for #&lt;A:0x278a8&gt;
+  Could not call private method: private method `private_method' called for #<A:0x278a8>
   Called protected method
   Called public method
 == c ==============================================
-  Could not call private method: private method `private_method' called for #&lt;A:0x278a8&gt;
-  Could not call protected method: protected method `protected_method' called for #&lt;A:0x278a8&gt;
-  Called public method</pre></div>
-</div>
+  Could not call private method: private method `private_method' called for #<A:0x278a8>
+  Could not call protected method: protected method `protected_method' called for #<A:0x278a8>
+  Called public method
 
 
 <p>(You can get that from a <a href="http://pastie.org/376001">pastie</a>) Now, what does it mean?</p>

@@ -10,9 +10,9 @@ categories:
 ---
 <p><a href="http://mediapeers.com">We</a> are working on a somewhat larger Rails application, and one of the actions renders a table with up to 9.000 table elements. Now, somewhere when rendering that table we use a line like</p>
 
-<div class="CodeRay">
-  <div class="code"><pre>some_array.collect(&amp;:some_method)</pre></div>
-</div>
+```
+some_array.collect(&amp;:some_method)
+```
 
 
 <p>and this line gets called several thousand times. As you can imagine this turns out to be not super-fast. But to our astounishment we found that more of 20% of the processing time was used up by creating several 1000 Proc objects!</p>
@@ -20,24 +20,24 @@ categories:
 <h2>Caching Proc</h2>
 
 <p>That led to a first optimization idea: caching those Proc object inside the Symbols.
-As you might know, the <em>&amp;:&lt;some_method_name&gt;</em> calls the <em>to_proc</em> method
+As you might know, the <em>&amp;:<some_method_name></em> calls the <em>to_proc</em> method
 of the <em>:some_method_name</em> Symbol. Rails come with
 an <a href="http://api.rubyonrails.org/classes/Symbol.html">implementation</a> which looks like this:</p>
 
-<div class="CodeRay">
-  <div class="code"><pre>def to_proc
+```
+def to_proc
   Proc.new { |*args| args.shift.__send__(self, *args) }
-end</pre></div>
-</div>
+end
+```
 
 
 <p>As these Proc objects always represent the same block for each individual Symbol they should be cacheable in the symbol itself:</p>
 
-<div class="CodeRay">
-  <div class="code"><pre>def to_proc
+```
+def to_proc
   @to_proc ||= Proc.new { |*args| args.shift.__send__(self, *args) }
-end</pre></div>
-</div>
+end
+```
 
 
 <p>This little change sped up rendering by 25%!</p>
@@ -48,8 +48,8 @@ end</pre></div>
 
 <p>Which makes sense: we create thousends of temporary objects, that become eligible for garbage collection pretty soon. And as you cannot finetune when Ruby's garbage collector kicks in without recompiling the ruby interpreter we tried instead to disable garbage collection while the response gets rendered:</p>
 
-<div class="CodeRay">
-  <div class="code"><pre>around_filter do |controller, action|
+```
+around_filter do |controller, action|
   GC.disable
   begin
     action.call
@@ -57,9 +57,8 @@ end</pre></div>
     GC.enable
     GC.start
   end
-end</pre></div>
-</div>
-
+end
+```
 
 <p>This still runs the garbage collector <em>before</em> the response is send back to the
  client. But at least the garbage collector runs only once per request. This gave
@@ -67,7 +66,7 @@ end</pre></div>
  showed that the memory usage doesn't grow over time: so garbage collection seems
  still to run fine.</p>
 
-<blockquote class="posterous_medium_quote">
+<blockquote>
   Note: What I would call proper behaviour of Rails would be to run the garbage 
   collector only _after_ the response is sent back to the client. And I would 
   expect the code above without the _GC.start_ code line to behave just like this. 

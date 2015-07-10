@@ -15,59 +15,55 @@ categories:
 
 <p>As stated there the first thing missing is an advisory locking implementation. With the database as the natural choice for a synchronisation point that implementation would be DB dependant, the following being a MySQL-implementation:</p>
 
-<div class="CodeRay">
-  <div class="code"><pre>module ActiveRecord::ConnectionAdapters::MysqlAdapter::AdvisoryLock
+```ruby
+module ActiveRecord::ConnectionAdapters::MysqlAdapter::AdvisoryLock
   TIMEOUT=10
 
   def locked(lock)
-    lock = &quot;#{current_database}_#{lock}&quot;
+    lock = "#{current_database}_#{lock}"
 
     begin
-      execute &quot;SELECT GET_LOCK(#{quote(lock)},#{TIMEOUT})&quot;
+      execute "SELECT GET_LOCK(#{quote(lock)},#{TIMEOUT})"
       yield
     ensure
-      execute &quot;SELECT RELEASE_LOCK(#{quote(lock)})&quot;
+      execute "SELECT RELEASE_LOCK(#{quote(lock)})"
     end
   end
 end
 
 class ActiveRecord::ConnectionAdapters::MysqlAdapter
   include AdvisoryLock
-end</pre></div>
-</div>
-
+end
+```
 
 <p>Now, whats still left is a find_or_create implementation. I like that one:</p>
 
-<div class="CodeRay">
-  <div class="code"><pre>ActiveRecord::Base
+```ruby
+ActiveRecord::Base
 
 class ActiveRecord::Base
   def self.find_first_by_hash(hash)
-    find :first, :conditions =&gt; hash
+    find :first, :conditions => hash
   end
 
   def self.find_or_create(hash)
-    find(hash) || connection.locked(&quot;#{self.table_name}.find_or_create&quot;) do
+    find(hash) || connection.locked("#{self.table_name}.find_or_create") do
       find(hash) || create(hash)
     end
   end
-end</pre></div>
-</div>
-
+end
+```
 
 <p>Where is the "find_or_create_by_attribute_names", you might ask? Well, I am not too fond of those anyways, because writing</p>
 
-<div class="CodeRay">
-  <div class="code"><pre>find_by_name_and zipcode name, zipcode</pre></div>
-</div>
-
+```ruby
+find_by_name_and_zipcode name, zipcode
+```
 
 <p>adds several hundred line to the ActiveRecord implementation, doesn't work with attributes that have an underscore in its name, and saves only a few typestrokes over</p>
 
-<div class="CodeRay">
-  <div class="code"><pre>find :first, :name =&gt; name, :zipcode =&gt; zipcode</pre></div>
-</div>
-
+```ruby
+find :first, :name => name, :zipcode => zipcode
+```
 
 <p>which could even be reduced down to one by an extended find() implementation, which takes a Hash as a possible first argument.</p>

@@ -13,15 +13,14 @@ of an application are developed separately and forget about the finer details of
 
 <p>Expectations look like this:</p>
 
-<div class="CodeRay">
-  <div class="code"><pre>def function(a, b, options = {})
-  expect! a =&gt; /^http:/, b =&gt; [Integer, Float], 
-    options =&gt; {
-      :foo =&gt; String,
-      :bar =&gt; [ Array, nil ]
+```ruby
+def function(a, b, options = {})
+  expect! a => /^http:/, b => [Integer, Float], 
+    options => {
+      :foo => String,
+      :bar => [ Array, nil ]
     }
-end</pre></div>
-</div>
-
+end
+```
 
 <p>If you missed the presentation, you may revisit it <a href="https://github.com/radiospiel/expectation">here.</a></p>
