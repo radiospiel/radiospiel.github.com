@@ -12,4 +12,5 @@ twitter_username: radiospiel
 github_username:  radiospiel
 
 # Build settings
-markdown: kramdown
+# markdown: kramdown
+markdown: redcarpet
