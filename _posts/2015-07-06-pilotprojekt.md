@@ -1,7 +1,7 @@
 ---
 layout: post
 title: Pilotprojekt - navigating through a project
-published: true
+published: false
 date: 2015-07-06
 categories: []
 ---

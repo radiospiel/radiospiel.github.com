@@ -1,7 +1,8 @@
 ---
 layout: post
 title: The Pilotprojekt database
-published: true
+published: false
+
 date: 2015-07-12
 categories: []
 ---
