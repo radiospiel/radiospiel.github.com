@@ -3,8 +3,7 @@ layout: post
 title: These shoes are made for walking
 published: true
 date: 2008-11-24
-categories:
-- object walking
+tags:
 - ruby
 ---
 <p>Wanna go for a stroll? It is getting winter again, at least <a href="http://maps.google.de/maps?q=Berlin&amp;amp;hl=de&amp;amp;ie=UTF8&amp;amp;ll=52.494278,13.441772&amp;amp;spn=0.148829,0.266762&amp;amp;z=12">in this part of the world</a>, so strolling outside might be a bit, err, cold. Instead I suggest you just walk some ruby objects this time instead?</p>

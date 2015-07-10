@@ -3,8 +3,7 @@ layout: post
 title: ! 'Advisory Locking    '
 published: true
 date: 2008-09-22
-categories:
-- 1rad
+tags:
 - ruby
 ---
 <p>Strangely RoR doesn't come with support for Advisory Locking. However, a typical

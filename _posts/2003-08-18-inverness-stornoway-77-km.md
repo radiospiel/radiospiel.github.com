@@ -4,7 +4,7 @@ title: 18. 8. - Inverness - Stornoway (77 km)
 published: true
 date: 2003-08-18
 frontpage: false 
-categories: 
+tags:
 - cycling
 ---
 

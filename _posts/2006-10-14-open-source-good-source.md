@@ -3,16 +3,17 @@ layout: post
 title: Open Source == Good Source?
 published: true
 date: 2006-10-14
-categories: []
+tags:
+- infrastructure
 ---
 <p>In den letzten Tagen stolperte ich bei heise bei der Meldung, Photoshop CS 2 werde demnächst veröffentlicht, auf folgenden Kommentar:</p>
 
-<blockquote class="posterous_short_quote">Re: es gibt keine gleichteuren Produkte
-MCalypso (136 Beiträge seit 7.7.03)    
-
-> GIMP ist mindestens so gut.
-
-vor allem bei CMYK ;)</blockquote>
+> Re: es gibt keine gleichteuren Produkte
+> MCalypso (136 Beiträge seit 7.7.03)    
+>
+> > GIMP ist mindestens so gut.
+>
+> vor allem bei CMYK ;)
 
 
 <p>und fühlte mich sogleich an diverse Diskussionen in den letzten Jahren erinnert: in diesem Beitrag und dem Beitrag, auf den sich dieser bezieht treffen zwei Menschen aufeinander. In meiner Wahrnehumg ist der eine, der <i>GIMP</i>-Verfechter, offensichtlich ein Open-Source-Anhänger, während der andere eher ein Praktiker zu sein scheint.</p>

@@ -3,7 +3,9 @@ layout: post
 title: ! 'Collecting metrics with librato  '
 published: true
 date: 2012-05-14
-categories: []
+tags:
+- infrastructure
+- ruby
 ---
 <p>@roidrage&rsquo;s presentation on metrics, measurements, and logging kept me thinking. At that point I had working metrics already, CPU, RAM, etc. are watched properly, and I would get warned when something bad happened. However, what I wanted on one of my application was application metrics.</p>
 

@@ -4,7 +4,6 @@ title: The Pilotprojekt database
 published: false
 
 date: 2015-07-12
-categories: []
 ---
 
 There is something special about the kinopilot data: individual entries rarely change. This includes

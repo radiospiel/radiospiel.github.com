@@ -3,12 +3,7 @@ layout: post
 title: Atomic science, revisited
 published: true
 date: 2009-02-23
-categories:
-- activerecord
-- atomic
-- find_or_update
-- race condition
-- rails
+tags:
 - ruby
 ---
 <p><a href="http://1rad.wordpress.com/2008/09/29/0x04-atomic-science/">I lamented earlier</a> about the absence of a racecondition-free find_or_create implementation and somewhat promised to check back with a working implementation. YES, WE CAN: NOW is the time, folks!</p>

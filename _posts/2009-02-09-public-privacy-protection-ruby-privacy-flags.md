@@ -3,10 +3,7 @@ layout: post
 title: ! 'public privacy protection: ruby privacy flags explained'
 published: true
 date: 2009-02-09
-categories:
-- private
-- protected
-- public
+tags:
 - ruby
 ---
 <p>...or: There is a difference between <em>methodname(args)</em> and <em>self.methodname(args)</em>!</p>

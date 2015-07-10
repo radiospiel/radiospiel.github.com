@@ -3,7 +3,8 @@ layout: post
 title: What to expect when you're expecting
 published: true
 date: 2012-10-10
-categories: []
+tags:
+- ruby
 ---
 <p>It is a while since I gave this presentation about the
 <a href="https://github.com/radiospiel/expectation">expectation</a> ruby gem.

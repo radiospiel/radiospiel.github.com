@@ -3,7 +3,8 @@ layout: post
 title: ! 'wickr: secure mobile communication?'
 published: true
 date: 2012-12-04
-categories: []
+tags:
+- infrastructure
 ---
 <p><a href="https://www.mywickr.com/">wickr</a> promises to let you communicate with others in a secure fashion from your phone &ndash; and have your messages dfestroyed after a while. It is free…</p>
 

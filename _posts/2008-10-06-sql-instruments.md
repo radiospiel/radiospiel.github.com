@@ -3,7 +3,8 @@ layout: post
 title: SQL instruments!!
 published: true
 date: 2008-10-06
-categories: []
+tags:
+- ruby
 ---
 
 <p>There are times, when you build a really complicated web page. Take a page like <a href="http://www.sportme.de">http://www.sportme.de</a>: this page has more than eight parts that are to be taken straight from the database (assuming you are not logged in and get the front page of that website). You see blocks showing professional members, newest members, random members, a news ticker, a "who is online list", etc. Each entry in these boxes usually pulls more than one row from one table from the database; the most obvious case when showing user teasers, where the user's image itself would not come from the table holding the users, but from "somewhere else".</p>

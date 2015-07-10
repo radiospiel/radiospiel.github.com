@@ -4,7 +4,7 @@ title: 11. 8. - York - Kirkby Stevens (112 km)
 published: true
 date: 2003-08-11
 frontpage: false 
-categories: 
+tags:
 - cycling
 
 ---

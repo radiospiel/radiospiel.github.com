@@ -3,7 +3,8 @@ layout: post
 title: Create a Postgresql user and database
 published: true
 date: 2012-12-13
-categories: []
+tags:
+- sql
 ---
 
 Just a reminder: this is how to create a Postgresql user and database:

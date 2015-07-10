@@ -3,11 +3,9 @@ layout: post
 title: url_for speed "issues"
 published: true
 date: 2008-12-15
-categories:
+tags:
 - performance
-- rails
 - ruby
-- url_for
 ---
 <p>Everyone seems to know that building an URL from a hash has some speed issues. The reason for that is quite clear: it looks up the shortest route using routes.rb, no wonder that this would take some time.</p>
 

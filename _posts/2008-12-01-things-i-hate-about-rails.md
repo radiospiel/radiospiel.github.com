@@ -3,8 +3,7 @@ layout: post
 title: things I hate about rails
 published: true
 date: 2008-12-01
-categories:
-- rails
+tags:
 - ruby
 ---
 <p>These are somewhat random rants, proceed with utmost care!</p>

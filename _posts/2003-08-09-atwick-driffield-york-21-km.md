@@ -4,7 +4,7 @@ title: 9.8. - Atwick - Driffield - York (21 km)
 published: true
 date: 2003-08-09
 frontpage: false 
-categories: 
+tags:
 - cycling
 ---
 

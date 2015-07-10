@@ -4,7 +4,7 @@ title: 12. 8. - Kirkby Stephens - Edinburgh (0 km)
 published: true
 date: 2003-08-12
 frontpage: false 
-categories: 
+tags:
 - cycling
 ---
 Zug fahren! Bei dem Wetter sicherlich empfehlenswert. Edinburgh empfaengt mich dann auch mit dem gewohnten Dauerregen.

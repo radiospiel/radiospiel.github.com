@@ -3,13 +3,9 @@ layout: post
 title: Components, revisited
 published: true
 date: 2009-04-23
-categories:
-- 1rad
-- components
-- distribute
+tags:
 - performance
 - rails
-- xc2
 ---
 <p>Lately I started looking into components again. What appealed me is that they could provide a uniform interface to parts of an application, rendering and all included. And the way they <del>are</del> were built into Rails they even spoke HTTP right out of the box.</p>
 

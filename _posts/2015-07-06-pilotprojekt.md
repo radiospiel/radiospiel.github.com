@@ -3,7 +3,6 @@ layout: post
 title: Pilotprojekt - navigating through a project
 published: false
 date: 2015-07-06
-categories: []
 ---
 
 So, this is it. My 2015 summer of code project. 

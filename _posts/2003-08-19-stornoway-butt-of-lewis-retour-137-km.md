@@ -4,7 +4,7 @@ title: 19. 8. - Stornoway - Butt of Lewis & retour (137 km)
 published: true
 date: 2003-08-19
 frontpage: false 
-categories: 
+tags:
 - cycling
 ---
 

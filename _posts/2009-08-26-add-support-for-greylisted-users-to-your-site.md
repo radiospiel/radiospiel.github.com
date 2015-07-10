@@ -3,7 +3,8 @@ layout: post
 title: Add support for greylisted users to your site
 published: true
 date: 2009-08-26
-categories: []
+tags:
+- infrastructure
 ---
 <p>In the ever ongoing fight against spam there is one really wonderful weapon: greylisting. For those that don't know how it works: whenever an email server sends an email for the first time, the receiving mail server rejects the email with a temporary error. The idea being that a legimitate server resends the email after a certain period of time, and then the email gets through, but a spam sender is likely not to resend the mail again.</p>
 

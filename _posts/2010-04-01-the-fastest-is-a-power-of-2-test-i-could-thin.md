@@ -3,7 +3,7 @@ layout: post
 title: the fastest "is a power of 2" test I could think of
 published: true
 date: 2010-04-01
-categories:
+tags:
 - performance
 - ruby
 ---

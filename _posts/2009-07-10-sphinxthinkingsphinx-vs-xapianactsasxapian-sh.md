@@ -3,16 +3,10 @@ layout: post
 title: Sphinx/ThinkingSphinx vs Xapian/ActsAsXapian shootout
 published: true
 date: 2009-07-10
-categories:
-- acts_as_xapian
-- fulltext
+tags:
+- databases
 - performance
-- rails
 - ruby
-- search
-- Sphinx
-- thinking_sphinx
-- Xapian
 ---
 <p>This benchmark compares thinking_sphinx with acts_as_xapian. We need a search engine that gives us the IDs of matching documents from a fulltext index, basic text search only.</p>
 

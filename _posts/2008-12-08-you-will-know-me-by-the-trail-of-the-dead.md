@@ -3,9 +3,8 @@ layout: post
 title: You will know me by the trail of the dead
 published: true
 date: 2008-12-08
-categories:
+tags:
 - performance
-- rails
 - ruby
 ---
 <p>Say you are running a bookstore. (Didn't you know that Rails is <a href="http://www.jonathansng.com/ruby-on-rails/ruby-on-rails-tutorial-now-with-more-202/">all</a>

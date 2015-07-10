@@ -3,7 +3,8 @@ layout: post
 title: Where 100% C0 code coverage is just not good enough
 published: true
 date: 2009-08-28
-categories: []
+tags:
+- code
 ---
 <p>I guess you are using rcov too to check that all your code was active in your tests at least once. Well, then, here are some bad news:</p>
 

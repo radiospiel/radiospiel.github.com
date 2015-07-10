@@ -4,7 +4,7 @@ title: 5. 8. - A Day called zero
 published: true
 date: 2003-08-05
 frontpage: false 
-categories: 
+tags:
 - cycling
 ---
 

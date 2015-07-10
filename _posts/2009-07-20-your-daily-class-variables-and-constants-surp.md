@@ -3,11 +3,8 @@ layout: post
 title: Your daily class variables and constants surprise
 published: true
 date: 2009-07-20
-categories:
-- class variable
-- constant
+tags:
 - ruby
-- scope
 ---
 <p>It is not chrismas, hence no quiz, but this was strangely surprising:</p>
 

@@ -3,7 +3,8 @@ layout: post
 title: How to setup a twitter application
 published: true
 date: 2012-10-12
-categories: []
+tags:
+- infrastructure
 ---
 <ol>
 <li>Go to <a href="https://dev.twitter.com">https://dev.twitter.com</a>, and sign in with your name and password.</li>

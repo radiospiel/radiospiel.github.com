@@ -4,7 +4,7 @@ title: 7.8. - Skegness - Grimsby (90 km)
 published: true
 date: 2003-08-07
 frontpage: false 
-categories: 
+tags:
 - cycling
 ---
 

@@ -3,7 +3,7 @@ layout: post
 title: Wissenswertes über Erlangen
 published: true
 date: 2009-01-05
-categories:
+tags:
 - Erlang
 ---
 <p>Now what does a Berlin based ruby coder does between Christmas and New Years? You might bet on a short trip to <a href="http://events.ccc.de/congress/2008/">"Nothing to Hide (25C3)"</a>, but this time you are dead wrong.</p>

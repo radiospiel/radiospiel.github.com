@@ -4,7 +4,7 @@ title: 20. 8. Stornoway - Staffin (79 km)
 published: true
 date: 2003-08-20
 frontpage: false 
-categories: 
+tags:
 - cycling
 ---
 

@@ -3,8 +3,7 @@ layout: post
 title: Don't go Hamlet on me!
 published: true
 date: 2008-09-15
-categories:
-- Debugging
+tags:
 - ruby
 ---
 <p>When something's rotten in the State of Denmark - I prefer to know! If you feel the same, and you have some C/C++-background: chances are that you know about assertions.</p>

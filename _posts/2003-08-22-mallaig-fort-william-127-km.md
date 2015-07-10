@@ -4,7 +4,7 @@ title: 22. 8. Mallaig - Fort William (127 km)
 published: true
 date: 2003-08-22
 frontpage: false 
-categories: 
+tags:
 - cycling
 ---
 Das war schon eine tolle Idee, die Kuestenroute zu nehmen: Toller Ausblick, mal nen weissen Sandstrand gesehen etc. pp. Aber selten habe ich mich so gequaelt wie heute! Das permanente bergauf und -ab! Was eine Steilkueste halt so mit sich bringt...

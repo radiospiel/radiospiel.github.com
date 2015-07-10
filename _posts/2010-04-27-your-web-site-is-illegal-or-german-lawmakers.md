@@ -3,15 +3,8 @@ layout: post
 title: ! 'Your web site is illegal, or: German lawmakers don''t understand the web'
 published: true
 date: 2010-04-27
-categories:
-- cookie
-- germany
-- internet
-- IP address
-- law
-- legal
+tags:
 - society
-- web 2.0
 ---
 
 <p>In recent weeks online news sections across Germany discussed privacy implementations in social networks, mainly targeting the US-based social network <a href="http://www.google.com/search?q=facebook.com" target="_blank">facebook.com</a>. Triggered by a somewhat questionable (in my eyes at least) privacy assessment done by the usually well-established German consumer rating organization <a href="http://www.google.com/search?q=Stiftung+Warentest" target="_blank">Stiftung Warentest</a>, the story even hit mainstream politics, when German consumer protection minister <a href="http://www.google.com/search?q=Ilse+Aigner" target="_blank">Ilse Aigner</a> urged Facebook "to revise the privacy policy without delay." While one can hardly ignore the free promotion for struggling German social network site <a href="http://www.google.com/search?q=studivz.net" target="_blank">studivz.net</a> and the somewhat antiamerican smell in the ongoing discussion, lets just have a deeper look at some of the problems with German privacy laws.</p>

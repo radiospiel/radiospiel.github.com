@@ -3,8 +3,7 @@ layout: post
 title: The times they are achanging...
 published: true
 date: 2008-09-08
-categories:
-- Debugging Tools
+tags:
 - ruby
 ---
 <p>...well, sometimes you just have to know how much time your application spends in a certain area.</p>

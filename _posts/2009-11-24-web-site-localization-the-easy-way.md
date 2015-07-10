@@ -3,14 +3,9 @@ layout: post
 title: Web site localization the easy way
 published: true
 date: 2009-11-24
-categories:
-- i18n
-- internationalization
+tags:
+- infrastructure
 - javascript
-- jquery
-- jquery.ez
-- l10n
-- localization
 ---
 
 There are many ways to add multiple languages to your web site. You will certainly

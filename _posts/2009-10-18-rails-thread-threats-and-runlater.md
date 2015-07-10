@@ -3,7 +3,9 @@ layout: post
 title: ! 'Rails thread threats, and run_later '
 published: true
 date: 2009-10-18
-categories: []
+tags:
+- ruby
+- code
 ---
 <p>We all know that rails has a rocky history regarding threads. Sadly, that seems also include the Rails port of one of my favourite Merb features: <a href="http://github.com/mattmatt/run_later">run_later</a>.</p>
 

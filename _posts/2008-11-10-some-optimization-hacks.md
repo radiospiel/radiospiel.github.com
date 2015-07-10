@@ -3,14 +3,13 @@ layout: post
 title: Some optimization hacks...
 published: true
 date: 2008-11-10
-categories:
+tags:
 - performance
-- rails
 - ruby
 ---
 <p><a href="http://mediapeers.com">We</a> are working on a somewhat larger Rails application, and one of the actions renders a table with up to 9.000 table elements. Now, somewhere when rendering that table we use a line like</p>
 
-```
+```ruby
 some_array.collect(&amp;:some_method)
 ```
 
@@ -24,7 +23,7 @@ As you might know, the <em>&amp;:<some_method_name></em> calls the <em>to_proc</
 of the <em>:some_method_name</em> Symbol. Rails come with
 an <a href="http://api.rubyonrails.org/classes/Symbol.html">implementation</a> which looks like this:</p>
 
-```
+```ruby
 def to_proc
   Proc.new { |*args| args.shift.__send__(self, *args) }
 end
@@ -33,7 +32,7 @@ end
 
 <p>As these Proc objects always represent the same block for each individual Symbol they should be cacheable in the symbol itself:</p>
 
-```
+```ruby
 def to_proc
   @to_proc ||= Proc.new { |*args| args.shift.__send__(self, *args) }
 end
@@ -48,7 +47,7 @@ end
 
 <p>Which makes sense: we create thousends of temporary objects, that become eligible for garbage collection pretty soon. And as you cannot finetune when Ruby's garbage collector kicks in without recompiling the ruby interpreter we tried instead to disable garbage collection while the response gets rendered:</p>
 
-```
+```ruby
 around_filter do |controller, action|
   GC.disable
   begin

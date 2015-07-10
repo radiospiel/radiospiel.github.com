@@ -3,7 +3,6 @@ layout: post
 title: Lem vs Soderbergh
 published: true
 date: 2006-10-14
-categories: []
 frontpage: false 
 posterous_slug: lem-vs-soderbergh
 ---

@@ -3,8 +3,7 @@ layout: post
 title: Atoms and their packages
 published: true
 date: 2008-11-03
-categories:
-- rails
+tags:
 - ruby
 ---
 <p>Every now and then I come across someone that doesn't really know about Ruby <a href="http://www.ruby-doc.org/core/classes/Symbol.html">symbols</a>. That comes as no surprise, because most programming languages don't have something like that as a built-in type. And Rails' HashWithIndifferentAccess (this is the class of the params hash that you deal with during actions) certainly doesn't improve the situation: novices might think that whether or not to use a symbol is a random decision.</p>
@@ -13,14 +12,16 @@ categories:
 
 <p>A specifc symbol to always refers to the same internal ruby object. Check the following:</p>
 
-```
+```ruby
 :a.object_id == :a.object_id
+```
 
 
 <p>will always be true, while the situation for Strings is different.</p>
 
 ```
 "a".object_id != "a".object_id
+```
 
 
 <p>To ensure that symbols always refer to the same internal object an implementation must guarantee the following:</p>

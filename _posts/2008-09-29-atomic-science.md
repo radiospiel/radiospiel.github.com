@@ -3,40 +3,39 @@ layout: post
 title: Atomic science
 published: true
 date: 2008-09-29
-categories:
-- 1rad
+tags:
+
 - ruby
 ---
-<h2>find_or_create_by_: think twice. before racing
-</h2>
 
-<p>The usually recommended way to create an item if it doesn't exist already is by using
+The usually recommended way to create an item if it doesn't exist already is by using
 find_or_create_by... This, however, comes with a race condition built in. Which doesn't always race,
-so think twice when and how you use it.</p>
+so think twice when and how you use it.
 
-<p>This code, for example, <em>might</em> deploy the race condition:</p>
+This code, for example, <em>might</em> deploy the race condition:
 
-```
+```ruby
 class Model < ActiveRecord::Base
   def dependant
     @dependant ||= Dependant.find_or_create_by_model_id(id)
   end
 end
-
+```
 
 <p>(This code tries to create the <em>dependant</em> model only if really needed.) This runs fine when you test it in the console, but beware: danger's ahead! To understand the problem let's have a look at the SQL code generated and executed by running the following piece of code, which should result in exactly one dependant object:</p>
 
-```
+```ruby
 m = Model.create! :key => "key", :data => ""
 puts m.dependant.inspect
 
 m2 = Model.find_by_id(m.id)
 puts m2.dependant.inspect
+```
 
 
 <p>This code results in the following SQL code (note that I am using Postgresql, and that I edited the log to show only the important stuff)</p>
 
-```
+```sql
 BEGIN
   INSERT INTO models ("key", "data") VALUES('key', '')
 COMMIT
@@ -48,28 +47,22 @@ COMMIT
 
 SELECT * FROM models WHERE (models."id" = 9) LIMIT 1
 SELECT * FROM dependants WHERE (dependants."model_id" = 9) LIMIT 1
+```
 
 
 <p>This code seems to result in one and only one Dependant object, which is linked with the Model object. However, just imagine you would run the same sequence of SQL code from two different database connections (as would be the case with two mongrel instances, for example). The execution order could be:</p>
 
-<ul>
-<li>
-<p>Connection 1:
-</p>
-```
-SELECT * FROM models WHERE (models."id" = 3) LIMIT 1
+- Connection 1:
+      ```
+      SELECT * FROM models WHERE (models."id" = 3) LIMIT 1
+      SELECT * FROM dependants WHERE (dependants."model_id" = 3) LIMIT 1
+      ```
+- Connection 2:
+  ```
+  SELECT * FROM models WHERE (models."id" = 3) LIMIT 1
   SELECT * FROM dependants WHERE (dependants."model_id" = 3) LIMIT 1
+  ```
 
-</li>
-<li>
-<p>Connection 2:
-</p>
-```
-SELECT * FROM models WHERE (models."id" = 3) LIMIT 1
-  SELECT * FROM dependants WHERE (dependants."model_id" = 3) LIMIT 1
-
-</li>
-</ul>
 <p>...at which point <em>both</em> connections would find no Dependant object for the model with id=3, and would both decide  to create it. Which leaves us with <em>two</em> entries in the database, or with an exception, if uniqueness is enforced on the database.</p>
 
 <blockquote class="posterous_short_quote">
@@ -92,12 +85,3 @@ SELECT * FROM models WHERE (models."id" = 3) LIMIT 1
 <h2>Working around...</h2>
 
 <p>Well, the problem remains, and is not easy to solve. What we would need is a database connection which would allow to increase the isolation level during a transaction. Unless we get that we have to take other measures, <a href="/0x03-advisory-locking/">Advisory locking</a> or explicitely <a href="http://www.postgresql.org/docs/8.3/static/explicit-locking.html">locking the involved tables</a>.</p>
-
-<h2>Further reading</h2>
-
-<ul>
-<li>Not exactly the topic of this weeks entry, but a quite interesting post
-about <a href="http://tektastic.com/2007/09/on-ruby-on-rails-with-postgresql-and.html%22><a href="http://tektastic.com/2007/09/on-ruby-on-rails-with-postgresql-and.html">http://tektastic.com/2007/09/on-ruby-on-rails-with-postgresql-and.html</a>">using foreign keys</a> in ruby.</li>
-<li>At "Shades of Gray" you'll find some <a href="http://blog.grayproductions.net/articles/five_activerecord_tips">thoughts</a>
-about that as well. I do disagree with that solution, though.</li>
-</ul>

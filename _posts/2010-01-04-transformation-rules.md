@@ -3,12 +3,8 @@ layout: post
 title: Transformation rules
 published: true
 date: 2010-01-04
-categories:
-- development
-- merb
-- rails
-- render
-- transformation rules
+tags:
+- infrastructure
 ---
 
 <p>Finally I wrote together some ideas about how rendering could be organized in a better way.

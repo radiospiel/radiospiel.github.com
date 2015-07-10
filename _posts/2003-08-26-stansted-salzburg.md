@@ -4,7 +4,7 @@ title: 26. 8. - Stansted - Salzburg
 published: true
 date: 2003-08-26
 frontpage: false 
-categories: 
+tags:
 - cycling
 ---
 Bin zurück. Kurze Statistik:
