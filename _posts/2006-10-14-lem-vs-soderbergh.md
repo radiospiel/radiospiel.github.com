@@ -4,7 +4,7 @@ title: Lem vs Soderbergh
 published: true
 date: 2006-10-14
 categories: []
-posterous_url: http://radiospiel.org/lem-vs-soderbergh
+frontpage: false 
 posterous_slug: lem-vs-soderbergh
 ---
 <p>"Solaris": schon als Jugendlicher habe ich dieses Buch verschlungen. Gilt die Geschichte der Forschungsmission, die auf einen <em>absolut</em> unentr&auml;tselbaren Planeten st&ouml;&szlig;t, doch als <em>das</em> Meisterwerk des polnischen Autors Stanis&#322;aw Lem. Sp&auml;ter, als mir das dann m&ouml;glich war, habe ich mir nat&uuml;rlich auch Tarkovskijs Adaption von Lems Roman angesehen, und als es im Jahr 2002 Soderberghs Neuverfilmung in die Kinos kam, landete auch die auf der Liste der unbedingt anzusehenden Filme.</p>
